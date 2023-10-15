@@ -11,7 +11,7 @@ export function ApointmentScreen() {
                 <View style={styles.perfil}>
                     <Image
                         style={styles.image}
-                        source={require('../Images/perfil.jpg')} />
+                        source={require('../Images/perfil.png')} />
                 </View>
                 <View style={styles.description}>
                     <Text style={styles.name}>Olá</Text>

@@ -10,7 +10,7 @@ export function NovosItens({ props, funcao }) {
                 <Text style={styles.texto}>{props.comentarios}</Text>
                 <Image
                         style={styles.image}
-                        source={require('../Images/perfil.jpg')} />
+                         />
             </View>
         </TouchableOpacity>
     )

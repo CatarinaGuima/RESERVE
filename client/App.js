@@ -16,9 +16,9 @@ function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'gray', tabBarInactiveTintColor: 'black' }}>
       <Tab.Screen name='Home' component={HomeScreen} options={{ title: 'Home', headerTitleAlign: 'center', tabBarLabel: 'Home', tabBarIcon: IconHome }} />
-      <Tab.Screen name='Appointment' component={ApointmentScreen} options={{ headerShown: false, tabBarLabel: 'Agendamento', tabBarIcon: IconAppointment }} />
-      <Tab.Screen name='Profile' component={ProfileScreen} options={{ headerShown: true,  title: "Perfil", headerTitleAlign: 'center', tabBarLabel: 'Perfil', tabBarIcon: IconProfile }} />
-      <Tab.Screen name='Settings' component={SettingsScreen} options={{ title: "Configurações", headerTitleAlign: 'center', tabBarLabel: 'Configurações', tabBarIcon: IconSettings }} />
+      <Tab.Screen name='Calendário' component={ApointmentScreen} options={{ headerShown: false, tabBarLabel: 'Calendário', tabBarIcon: IconAppointment }} />
+      <Tab.Screen name='Reservar' component={ProfileScreen} options={{ headerShown: true,  title: "Reservar", headerTitleAlign: 'center', tabBarLabel: 'Reservar', tabBarIcon: IconProfile }} />
+      <Tab.Screen name='Histórico' component={SettingsScreen} options={{ title: "Histórico", headerTitleAlign: 'center', tabBarLabel: 'Histórico', tabBarIcon: IconSettings }} />
     </Tab.Navigator>
   );
 }

@@ -1,4 +1,4 @@
-import { AntDesign, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons, Entypo, FontAwesome } from '@expo/vector-icons';
 
 export function IconHome() {
     return (
@@ -14,12 +14,12 @@ export function IconHome() {
   
   export function IconProfile() {
     return (
-      <Octicons name="person" size={28} color="black" />
+      <Entypo name="plus" size={34} color="black" />
     );
   }
   
   export function IconSettings() {
     return (
-      <AntDesign name="setting" size={28} color="black" />
+      <FontAwesome name="search" size={26} color="black" />
     );
   }

@@ -16,14 +16,8 @@ export function ProfileScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-        <Image
-          style={styles.image}
-          source={require('../Images/perfil.jpg')} />
         <View style={styles.addPhotoContainer}>
-          <TouchableOpacity style={styles.addPhotoButton}>
-            <Icon name="photo" size={20} style={styles.addPhotoIcon} />
-            <Text style={styles.addPhotoText}>Adicionar uma foto</Text>
-          </TouchableOpacity>
+          <Text style={styles.addPhotoText}>Crie uma nova reserva</Text>
         </View>
         <View style={styles.infoContainer}>
           <View style={styles.formField}>
@@ -38,12 +32,12 @@ export function ProfileScreen() {
             </View>
           </View>
           <View style={styles.formField}>
-            <Icon name="envelope" size={20} style={styles.infoIcon} />
+            <Icon name="phone" size={20} style={styles.infoIcon} />
             <View style={[styles.inputContainer]}>
               <TextInput
                 style={styles.infoTextInput}
                 multiline
-                placeholder="E-mail"
+                placeholder="(__)_____-____"
                 onChangeText={text => setEmail(text)}
               />
             </View>
@@ -61,7 +55,7 @@ export function ProfileScreen() {
           </View>
         </View>
         <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-          <Text style={styles.saveButtonText}>Salvar</Text>
+          <Text style={styles.saveButtonText}>Confirmar Reserva</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -71,7 +65,7 @@ export function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF0F5', //cor do plano de fundo geral
+    backgroundColor: '#FFF', //cor do plano de fundo geral
     paddingHorizontal: 20,
     paddingTop: 50
   },
@@ -139,7 +133,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   saveButton: {
-    backgroundColor: '#FF1493',
+    backgroundColor: '#000',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
