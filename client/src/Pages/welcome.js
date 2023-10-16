@@ -4,8 +4,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 export function WelcomeScreen({ navigation }) {
 
-
-
     return (
         <View
             backgroundColor="black"
@@ -62,7 +60,6 @@ export function WelcomeScreen({ navigation }) {
                 <Text style={styles.legend}>Or login with Social Media</Text>
             </View>
         </View>
-
     );
 }
 

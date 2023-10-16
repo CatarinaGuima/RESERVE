@@ -8,9 +8,7 @@ export function NovosItens({ props, funcao }) {
             <View style={styles.postagem}>
                 <MaterialIcons name='delete' size={22} color={'lightpink'} />
                 <Text style={styles.texto}>{props.comentarios}</Text>
-                <Image
-                        style={styles.image}
-                         />
+                <Image style={styles.image}/>
             </View>
         </TouchableOpacity>
     )

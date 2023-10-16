@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Image } fro
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const handleSave = () => {
-  Alert.alert('Informações salvas!');
+  Alert.alert('Reserva Concluída!');
 };
 
 export function ProfileScreen() {
@@ -43,22 +43,55 @@ export function ProfileScreen() {
             </View>
           </View>
           <View style={styles.formField}>
-            <Icon name="map-marker" size={20} style={styles.infoIcon} />
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.infoTextInput}
-                multiline
-                placeholder="Cidade"
-                onChangeText={text => setCity(text)}
-              />
-            </View>
+            <TextInput
+              style={styles.infobox}
+              keyboardType='numeric'
+              placeholder="Qtd de Pessoas"
+              onChangeText={text => setCity(text)}
+            />
+          </View>
+          <View style={styles.formField}>
+            <TextInput
+              style={styles.infobox}
+              keyboardType='numeric'
+              placeholder="Mesa"
+              onChangeText={text => setCity(text)}
+            />
+          </View>
+          <View style={styles.formField}>
+            <Text style={styles.title}>Horário:</Text>
+            <TextInput
+              style={styles.infobox}
+              keyboardType='numeric'
+              placeholder="__:__"
+              onChangeText={text => setCity(text)}
+            />
+          </View>
+          <View style={styles.formField}>
+            <Text style={styles.title}>Data:</Text>
+            <TextInput
+              style={styles.infobox}
+              keyboardType='numeric'
+              placeholder="DD/MM/AAAA"
+              onChangeText={text => setCity(text)}
+            />
+          </View>
+          <View style={styles.formField}>
+            <Text style={styles.title}>Observações:</Text>
+            <TextInput
+              style={[styles.infobox, styles.obs]}
+              multiline
+              keyboardType='default'
+              placeholder=""
+              onChangeText={text => setCity(text)}
+            />
           </View>
         </View>
         <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
           <Text style={styles.saveButtonText}>Confirmar Reserva</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -105,7 +138,7 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   addPhotoText: {
-    fontSize: 18,
+    fontSize: 24,
     color: '#000'
   },
   infoContainer: {
@@ -131,6 +164,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#000',
     paddingHorizontal: 10
+  },
+  infobox: {
+    fontSize: 18,
+    height: 50,
+    color: '#000',
+    paddingHorizontal: 10,
+    borderWidth: 1,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  obs: {
+   width: 260,
+   height: 210
   },
   saveButton: {
     backgroundColor: '#000',
