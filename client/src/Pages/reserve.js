@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Axios from 'axios';
 
-
-export function ProfileScreen() {
+export function ReserveScreen() {
 
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
@@ -45,6 +44,15 @@ export function ProfileScreen() {
   //CREATE
   const submeterInformacao = (texto) => {
     Axios.post("http://192.168.0.8:3001/item", { item: texto })
+  }
+  //READ
+  useEffect(() => {
+    Axios.get("http://192.168.0.8:3001/item")
+  })
+
+  //DELETE
+  const deletarComentario = (key) => {
+    Axios.delete(`http://192.168.0.8:3001/item/${key}`,)
   }
 
   return (

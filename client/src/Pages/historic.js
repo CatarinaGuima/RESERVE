@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export function SettingsScreen() {
+export function HistoricScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
