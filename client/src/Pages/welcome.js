@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 

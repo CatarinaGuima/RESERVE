@@ -2,7 +2,7 @@ import { View, StyleSheet, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
 import { NovosItens } from '../Componentes/NovosItens';
 import { AdicionarItem } from '../Componentes/AdicionarItem';
-import Axios from 'axios';
+
 
 export function ReviewsScreen() {
 
@@ -16,10 +16,7 @@ export function ReviewsScreen() {
         )
     }, [lista])
 
-    //CREATE
-    const submeterInformacao = (texto) => {
-        Axios.post("http://192.168.0.8:3001/comentarios", {comentarios: texto})
-    }
+    
 
     //DELETE
     const deletarComentario = (key) => {

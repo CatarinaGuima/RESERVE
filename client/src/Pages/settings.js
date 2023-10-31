@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { FontAwesome, Feather } from '@expo/vector-icons';
 
 export function SettingsScreen() {
   return (

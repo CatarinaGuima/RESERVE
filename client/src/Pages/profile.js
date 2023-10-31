@@ -1,6 +1,8 @@
-import {useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList,  } from 'react-native';
+import { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Axios from 'axios';
+
 
 export function ProfileScreen() {
 
@@ -38,6 +40,11 @@ export function ProfileScreen() {
     setData(reserva.data);
     setHorario(reserva.horario);
     handleDeleteReserva(index);
+  }
+
+  //CREATE
+  const submeterInformacao = (texto) => {
+    Axios.post("http://192.168.0.8:3001/item", { item: texto })
   }
 
   return (

@@ -10,14 +10,14 @@ const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "123123",
-    database: "bdcomentarios",
-    port: "3307",
+    database: "bditens",
+    port: "3308",
 })
 
 //CREATE
 app.get("/", (req, res) => {
 
-    let SQL = "INSERT INTO listacomentarios ( comentarios ) VALUES ('Amei as novas cores dos esmaltes')";
+    let SQL = "INSERT INTO listaitens ( itens ) VALUES ('Vender Comida')";
 
     db.query(SQL, (err, result) => {
         console.log(err);
@@ -26,18 +26,18 @@ app.get("/", (req, res) => {
     res.send("CONECTADO!!!")
 })
 
-app.post("/comentarios", (req, res) => {
+app.post("/item", (req, res) => {
     const { comentarios } = req.body;
-    let SQL = "INSERT INTO listacomentarios ( comentarios ) VALUES (?)";
+    let SQL = "INSERT INTO listaitens ( itens ) VALUES (?)";
     db.query(SQL, comentarios, (err, result) => {
         console.log(err);
     })
 });
 
 //READ
-app.get("/comentarios", (req, res) => {
+app.get("/item", (req, res) => {
 
-    let SQL = "SELECT * from listacomentarios";
+    let SQL = "SELECT * from listaitens";
 
     db.query(SQL, (err, result) => {
         if (err) console.log(err);
@@ -46,12 +46,12 @@ app.get("/comentarios", (req, res) => {
 })
 
 //DELETE
-app.delete("/comentarios/:id", (req, res) => {
+app.delete("/item/:id", (req, res) => {
 
     const { id } = req.params;
     console.log("Informação: ", id)
 
-    let SQL = "DELETE FROM listacomentarios WHERE (`id` = ? )";
+    let SQL = "DELETE FROM listaitens WHERE (`id` = ? )";
 
     db.query(SQL, id, (err, result) => {
         console.log(err);
