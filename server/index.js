@@ -10,14 +10,14 @@ const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "123123",
-    database: "bditens",
+    database: "reservas",
     port: "3308",
 })
 
 //CREATE
 app.get("/", (req, res) => {
 
-    let SQL = "INSERT INTO listaitens ( itens ) VALUES ('Vender Comida')";
+    let SQL = "INSERT INTO reserva ( nome, telefone, num_mesa, qtd_clientes, data_atend, horario ) VALUES ('Catarina Guimarães', '81991835021', 02, 4, '2023-11-14', '23:46:38' )";
 
     db.query(SQL, (err, result) => {
         console.log(err);
@@ -26,18 +26,19 @@ app.get("/", (req, res) => {
     res.send("CONECTADO!!!")
 })
 
+//Tentei alterar, mas não consegui
 app.post("/item", (req, res) => {
     const { comentarios } = req.body;
     let SQL = "INSERT INTO listaitens ( itens ) VALUES (?)";
     db.query(SQL, comentarios, (err, result) => {
         console.log(err);
     })
-});
+}); 
 
 //READ
-app.get("/item", (req, res) => {
+app.get("/reservas", (req, res) => {
 
-    let SQL = "SELECT * from listaitens";
+    let SQL = "SELECT * from reserva";
 
     db.query(SQL, (err, result) => {
         if (err) console.log(err);
@@ -45,13 +46,14 @@ app.get("/item", (req, res) => {
     })
 })
 
+// Não está deletando 
 //DELETE
-app.delete("/item/:id", (req, res) => {
+app.delete("/reserva/:id", (req, res) => {
 
     const { id } = req.params;
     console.log("Informação: ", id)
 
-    let SQL = "DELETE FROM listaitens WHERE (`id` = ? )";
+    let SQL = "DELETE FROM reserva WHERE (`id` = ? )";
 
     db.query(SQL, id, (err, result) => {
         console.log(err);
