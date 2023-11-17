@@ -12,53 +12,52 @@ const db = mysql.createPool({
     password: "123123",
     database: "reservas",
     port: "3308",
-})
+});
 
-//CREATE
-app.get("/", (req, res) => {
+// CREATE
+app.post("/reserva", (req, res) => {
+    const { nome, telefone, num_mesa, qtd_clientes, data_atend, horario } = req.body;
+    const SQL = "INSERT INTO reserva (nome, telefone, num_mesa, qtd_clientes, data_atend, horario) VALUES (?, ?, ?, ?, ?, ?)";
+    const values = [nome, telefone, num_mesa, qtd_clientes, data_atend, horario];
 
-    let SQL = "INSERT INTO reserva ( nome, telefone, num_mesa, qtd_clientes, data_atend, horario ) VALUES ('Catarina Guimarães', '81991835021', 02, 4, '2023-11-14', '23:46:38' )";
+    db.query(SQL, values, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Erro ao adicionar reserva");
+        } else {
+            res.status(200).send("Reserva adicionada com sucesso");
+        }
+    });
+});
 
-    db.query(SQL, (err, result) => {
-        console.log(err);
-    })
-
-    res.send("CONECTADO!!!")
-})
-
-//Tentei alterar, mas não consegui
-app.post("/item", (req, res) => {
-    const { comentarios } = req.body;
-    let SQL = "INSERT INTO listaitens ( itens ) VALUES (?)";
-    db.query(SQL, comentarios, (err, result) => {
-        console.log(err);
-    })
-}); 
-
-//READ
-app.get("/reservas", (req, res) => {
-
-    let SQL = "SELECT * from reserva";
+// READ
+app.get("/reserva", (req, res) => {
+    const SQL = "SELECT * FROM reserva";
 
     db.query(SQL, (err, result) => {
-        if (err) console.log(err);
-        else res.send(result);
-    })
-})
+        if (err) {
+            console.error(err);
+            res.status(500).send("Erro ao obter reservas");
+        } else {
+            res.status(200).send(result);
+        }
+    });
+});
 
-// Não está deletando 
-//DELETE
+// DELETE
 app.delete("/reserva/:id", (req, res) => {
-
     const { id } = req.params;
-    console.log("Informação: ", id)
+    const SQL = "DELETE FROM reserva WHERE id = ?";
 
-    let SQL = "DELETE FROM reserva WHERE (`id` = ? )";
-
-    db.query(SQL, id, (err, result) => {
-        console.log(err);
-    })
-})
+    db.query(SQL, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Erro ao excluir reserva");
+        } else {
+            res.status(200).send("Reserva excluída com sucesso");
+        }
+    });
+});
 
 app.listen(3001, () => {
     console.log('Rodando servidor');

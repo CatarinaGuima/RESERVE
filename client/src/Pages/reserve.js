@@ -1,139 +1,30 @@
-import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
 import Axios from 'axios';
+import { AdicionarReservas } from '../Componentes/AdicionarReservas';
+import { Topo } from '../Componentes/Topo';
 
 export function ReserveScreen() {
 
-  const [nome, setNome] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [numeroMesa, setNumeroMesa] = useState('');
-  const [numeroCliente, setNumeroCliente] = useState('');
-  const [data, setData] = useState('');
-  const [horario, setHorario] = useState('');
-  const [reservas, setReservas] = useState([]);
-
-  function handleAddReserva() {
-    const reserva = { nome, telefone, numeroMesa, numeroCliente, data, horario };
-    setReservas([...reservas, reserva]);
-    setNome('');
-    setTelefone('');
-    setNumeroMesa('');
-    setNumeroCliente('');
-    setData('');
-    setHorario('');
-  }
-
-  function handleDeleteReserva(index) {
-    const newReservas = [...reservas];
-    newReservas.splice(index, 1);
-    setReservas(newReservas);
-  }
-
-  function handleEditReserva(index) {
-    const reserva = reservas[index];
-    setNome(reserva.nome);
-    setTelefone(reserva.telefone);
-    setNumeroMesa(reserva.numeroMesa);
-    setNumeroCliente(reserva.numeroCliente)
-    setData(reserva.data);
-    setHorario(reserva.horario);
-    handleDeleteReserva(index);
-  }
-
   //CREATE
   const submeterInformacao = (texto) => {
-    Axios.post("http://192.168.0.8:3001/item", { item: texto })
+    Axios.post("http://192.168.0.8:3001/reserva", { item: texto })
   }
   //READ
   useEffect(() => {
-    Axios.get("http://192.168.0.8:3001/item")
+    Axios.get("http://192.168.0.8:3001/reserva")
   })
 
   //DELETE
   const deletarComentario = (key) => {
-    Axios.delete(`http://192.168.0.8:3001/item/${key}`,)
+    Axios.delete(`http://192.168.0.8:3001/reserva/${key}`,)
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>The Black Angus</Text>
-        <Text style={styles.subtitle}>Reservas de Mesas</Text>
-      </View>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Nome"
-          value={nome}
-          onChangeText={setNome}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Telefone"
-          value={telefone}
-          onChangeText={setTelefone}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Número da Mesa"
-          value={numeroMesa}
-          onChangeText={setNumeroMesa}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Número de Clientes"
-          value={numeroCliente}
-          onChangeText={setNumeroCliente}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Data"
-          value={data}
-          onChangeText={setData}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Horário"
-          value={horario}
-          onChangeText={setHorario}
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleAddReserva}
-        >
-          <Text style={styles.buttonText}>Adicionar Reserva</Text>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        data={reservas}
-        keyExtractor={(_, index) => String(index)}
-        renderItem={({ item, index }) => (
-          <View style={styles.reservaContainer}>
-            <Text style={styles.reservaText}>{item.nome} - {item.telefone} - Mesa {item.numeroMesa} - {item.numeroCliente} Pessoas- {item.data} - {item.horario}</Text>
-            <TouchableOpacity
-              style={styles.reservaButton}
-              onPress={() => handleEditReserva(index)}
-            >
-              <Ionicons
-                name="create-outline"
-                size={24}
-                color="#FFF"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.reservaButton}
-              onPress={() => handleDeleteReserva(index)}
-            >
-              <Ionicons
-                name="trash-outline"
-                size={24}
-                color="#FFF"
-              />
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+     <Topo/>
+     <AdicionarReservas 
+     funcao={submeterInformacao}/>
     </View>
   );
 }
@@ -144,61 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     padding: 20,
   },
-  header: {
-    backgroundColor: 'black',
-    padding: 10,
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFF',
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#FFF',
-    textAlign: 'center',
-  },
-  form: {
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: '#DDD',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-  reservaContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-    backgroundColor: '#DDD',
-    padding: 10,
-    borderRadius: 5,
-  },
-  reservaText: {
-    flex: 1,
-    marginRight: 10,
-  },
-  reservaButton: {
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginLeft: 10,
-  }
+ 
 })
