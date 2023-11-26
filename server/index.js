@@ -14,6 +14,7 @@ const db = mysql.createPool({
     port: "3308",
 });
 
+
 // CREATE
 app.post("/reserva", (req, res) => {
     const { nome, telefone, num_mesa, qtd_clientes, data_atend, horario } = req.body;
@@ -31,7 +32,7 @@ app.post("/reserva", (req, res) => {
 });
 
 // READ
-app.get("/reserva", (req, res) => {
+app.get("/reservas", (req, res) => {
     const SQL = "SELECT * FROM reserva";
 
     db.query(SQL, (err, result) => {

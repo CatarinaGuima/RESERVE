@@ -1,30 +1,55 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Axios from 'axios';
 import { AdicionarReservas } from '../Componentes/AdicionarReservas';
 import { Topo } from '../Componentes/Topo';
 
 export function ReserveScreen() {
+  // CREATE
+  const adicionarReserva = (novaReserva) => {
+    Axios.post("http://192.168.0.8:3001/reserva", {...novaReserva})
+      .then(response => {
+        // Lógica para lidar com a resposta bem-sucedida
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Lógica para lidar com o erro
+        console.error('Erro ao adicionar reserva:', error.response.status);
+      });
 
-  //CREATE
-  const submeterInformacao = (texto) => {
-    Axios.post("http://192.168.0.8:3001/reserva", { item: texto })
-  }
-  //READ
+  };
+
+  // READ
   useEffect(() => {
-    Axios.get("http://192.168.0.8:3001/reserva")
-  })
+    Axios.get("http://192.168.0.8:3001/reservas")
+      .then(response => {
+        // Lógica para lidar com a resposta bem-sucedida
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Lógica para lidar com o erro
+        console.error('Erro ao obter reservas:', error.response.status);
+      });
+  }, []);
 
-  //DELETE
-  const deletarComentario = (key) => {
-    Axios.delete(`http://192.168.0.8:3001/reserva/${key}`,)
-  }
+  // DELETE
+  const deletarReserva = (key) => {
+    Axios.delete(`http://192.168.0.8:3001/reserva/${key}`)
+      .then(response => {
+        // Lógica para lidar com a resposta bem-sucedida
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Lógica para lidar com o erro
+        console.error('Erro ao excluir reserva:', error.response.status);
+      });
+  };
 
   return (
     <View style={styles.container}>
-     <Topo/>
-     <AdicionarReservas 
-     funcao={submeterInformacao}/>
+      <Topo />
+      <AdicionarReservas
+        funcao={adicionarReserva} />
     </View>
   );
 }
@@ -35,5 +60,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     padding: 20,
   },
- 
-})
+});
