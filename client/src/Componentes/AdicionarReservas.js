@@ -46,36 +46,42 @@ export function AdicionarReservas({ funcao }) {
                 placeholder="Nome"
                 value={nome}
                 onChangeText={setNome}
+                required
             />
             <TextInput
                 style={styles.input}
                 placeholder="Telefone"
                 value={telefone}
                 onChangeText={setTelefone}
+                required
             />
             <TextInput
                 style={styles.input}
                 placeholder="Número da Mesa"
                 value={numeroMesa}
                 onChangeText={setNumeroMesa}
+                required
             />
             <TextInput
                 style={styles.input}
                 placeholder="Número de Clientes"
                 value={numeroCliente}
                 onChangeText={setNumeroCliente}
+                required
             />
             <TextInput
                 style={styles.input}
                 placeholder="Data"
                 value={data}
                 onChangeText={setData}
+                required
             />
             <TextInput
                 style={styles.input}
                 placeholder="Horário"
                 value={horario}
                 onChangeText={setHorario}
+                required
             />
             <TouchableOpacity
                 style={styles.button}
@@ -113,44 +119,44 @@ export function AdicionarReservas({ funcao }) {
 }
 
 const styles = StyleSheet.create({
-      form: {
+    form: {
         marginBottom: 20,
-      },
-      input: {
+    },
+    input: {
         height: 40,
         borderColor: '#DDD',
         borderWidth: 1,
         borderRadius: 5,
         marginBottom: 10,
         paddingHorizontal: 10,
-      },
-      button: {
+    },
+    button: {
         backgroundColor: 'black',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
-      },
-      buttonText: {
+    },
+    buttonText: {
         color: '#FFF',
         fontWeight: 'bold',
-      },
-      reservaContainer: {
+    },
+    reservaContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
         backgroundColor: '#DDD',
         padding: 10,
         borderRadius: 5,
-      },
-      reservaText: {
+    },
+    reservaText: {
         flex: 1,
         marginRight: 10,
-      },
-      reservaButton: {
+    },
+    reservaButton: {
         backgroundColor: 'black',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
         marginLeft: 10,
-      }
+    }
 });
