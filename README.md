@@ -4,8 +4,8 @@
  
  ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
-![Alt text](client/assets/image.png)
-![Alt text](client/assets/image-1.png)
+![Alt text](assets/imagem-tela.png)
+![Alt text](assets/imagem-tela2.png)
 
 ---
 
