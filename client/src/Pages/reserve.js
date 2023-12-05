@@ -5,6 +5,7 @@ import { AdicionarReservas } from '../Componentes/AdicionarReservas';
 import { Topo } from '../Componentes/Topo';
 
 export function ReserveScreen() {
+  const [reservas, setReservas] = useState([]);
 
   // CREATE
   const adicionarReserva = (novaReserva) => {
@@ -26,9 +27,14 @@ export function ReserveScreen() {
         setReservas(response.data);
       })
       .catch(error => {
-        console.error('Erro ao obter reservas:', error.response.status);
+        if (error.response && error.response.status) {
+          console.error('Erro ao obter reservas. Código de status:', error.response.status);
+        } else {
+          console.error('Erro ao obter reservas:', error.message);
+        }
       });
   }, []);
+
 
   // DELETE
   const deletarReserva = (key) => {
@@ -45,7 +51,11 @@ export function ReserveScreen() {
   return (
     <View style={styles.container}>
       <Topo />
-      <AdicionarReservas funcao={adicionarReserva} />
+      <AdicionarReservas
+        funcao={adicionarReserva}
+        reservas={reservas}
+        onDelete={deletarReserva}
+      />
       {/* Renderiza as reservas aqui */}
     </View>
   );
